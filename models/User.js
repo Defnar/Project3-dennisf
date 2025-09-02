@@ -1,24 +1,32 @@
 import { Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
 
-const UserSchema = new Schema({
-  username: {
-    type: String,
-    required: [true, "username required"],
-    min: 6,
+const UserSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: [true, "username required"],
+      min: 6,
+    },
+    password: {
+      type: String,
+      required: [true, "password required"],
+      min: 8,
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: [true, "email required"],
+      match: [/.+\@.+\..+/, "please provide a valid email"],
+    },
   },
-  password: {
-    type: String,
-    required: [true, "password required"],
-    min: 8,
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: [true, "email required"],
-    match: [/.+\@.+\..+/, "please provide a valid email"],
-  },
-});
+);
+
+UserSchema.set("toJSON", {
+    transform: (doc, ret) => {
+        delete ret.password;
+    }
+})
 
 UserSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
