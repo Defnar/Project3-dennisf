@@ -18,4 +18,4 @@ router.use("/:id", authEditMiddleware);
 router.use("/id", checkProjectMiddleware);
 
 router.get("/:id", projectControllers.getProject);
-router.put("/:id", )
+router.put("/:id", projectControllers.editProject)

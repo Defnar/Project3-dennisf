@@ -38,8 +38,17 @@ const getProject = async (req, res) => {
 };
 
 const editProject = async (req, res) => {
-    try {
-    }
-}
+  try {
+    if (!req.body)
+      return res.status(400).json({ message: "Body cannot be empty" });
+    const project = Object.assign(req.project, req.body);
 
-export default { newProject, getAllProjects, getProject };
+    await project.save();
+    res.json({ message: "Post successfully updated", project });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export default { newProject, getAllProjects, getProject, editProject };
