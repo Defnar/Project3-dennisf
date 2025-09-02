@@ -1,6 +1,7 @@
 import e from "express";
 import { authMiddleware } from "../auth/auth.js";
 import projectControllers from "../controllers/projectControllers.js";
+import { authEditMiddleware } from "../auth/middleware.js";
 const router = e.Router();
 
 //api/projects
@@ -9,3 +10,5 @@ router.use(authMiddleware);
 
 router.post("/", projectControllers.newProject);
 router.get("/", projectControllers.getAllProjects);
+
+router.use("/:id", authEditMiddleware)
