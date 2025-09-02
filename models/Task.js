@@ -13,6 +13,11 @@ const TaskSchema = new Schema({
     enum: ["To Do", "In progress", "Done"],
     default: "To Do",
   },
+  project: {
+    type: Schema.Types.ObjectId,
+    ref: "Project",
+    required: true,
+  },
 });
 
 export const Task = model("Task", TaskSchema);
