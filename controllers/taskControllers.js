@@ -15,7 +15,7 @@ const createTask = async (req, res) => {
   }
 };
 
-const getTasks = async (req, res) => {
+const getAllTasks = async (req, res) => {
   try {
     const tasks = await Task.find({ project: req.params.projectId });
 
@@ -29,4 +29,14 @@ const getTasks = async (req, res) => {
   }
 };
 
-export default { createTask, getTasks };
+const getTask = async (req, res) => {
+    try {
+        res.json(req.task);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json({error: err.message})
+    }
+}
+
+export default { createTask, getAllTasks, getTask };

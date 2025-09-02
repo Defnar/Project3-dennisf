@@ -2,7 +2,7 @@ import e from "express";
 import { authMiddleware } from "../auth/auth.js";
 import projectControllers from "../controllers/projectControllers.js";
 import {
-  authEditMiddleware,
+  projectMiddleware,
   checkProjectMiddleware,
 } from "../auth/middleware.js";
 const router = e.Router();
@@ -15,7 +15,7 @@ router.post("/", projectControllers.newProject);
 router.get("/", projectControllers.getAllProjects);
 
 //authorize users to interact with projects based on ids
-router.use("/:projectId", authEditMiddleware);
+router.use("/:projectId", projectMiddleware);
 
 //ensure project is authorized
 router.use("/:projectId", checkProjectMiddleware);

@@ -2,7 +2,7 @@ import { Project } from "../models/Project.js";
 import { Task } from "../models/Task.js";
 
 //project middlewares
-export const authEditMiddleware = async (req, res, next) => {
+export const projectMiddleware = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.projectId);
 
