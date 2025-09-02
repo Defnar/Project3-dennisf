@@ -12,10 +12,10 @@ router.get("/", taskControllers.getAllTasks);
 router.use("/:taskId", taskMiddleware);
 
 //ensure authorization
-router.use("/:taskId", checkTaskMidleware)
+router.use("/:taskId", checkTaskMidleware);
 
 //api/projects/:projectid/tasks/:taskid
-router.get("/:taskId", taskControllers.getTask)
-
+router.get("/:taskId", taskControllers.getTask);
+router.put("/:taskId", taskControllers.editTask);
 
 export default router;

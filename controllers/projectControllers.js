@@ -43,7 +43,7 @@ const editProject = async (req, res) => {
     const project = Object.assign(req.project, req.body);
 
     await project.save();
-    res.json({ message: "Post successfully updated", project });
+    res.json({ message: "Project successfully updated", project });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: err.message });

@@ -30,13 +30,27 @@ const getAllTasks = async (req, res) => {
 };
 
 const getTask = async (req, res) => {
-    try {
-        res.json(req.task);
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({error: err.message})
-    }
-}
+  try {
+    res.json(req.task);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
 
-export default { createTask, getAllTasks, getTask };
+const editTask = async (req, res) => {
+  try {
+    if (!req.body)
+      return res.status(400).json({ message: "Body cannot be empty" });
+
+    const task = Object.assign(req.task, req.body);
+
+    await task.save();
+    res.json({ message: "task successfully updated" }, task);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export default { createTask, getAllTasks, getTask, editTask };
