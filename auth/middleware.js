@@ -6,7 +6,7 @@ export const projectMiddleware = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.projectId);
 
-    if (project && project.user == req.user._id) req.project = project;
+    if (project && project.user.equals(req.user._id)) req.project = project;
 
     next();
   } catch (err) {
@@ -29,7 +29,7 @@ export const taskMiddleware = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.taskId);
 
-    if (task && task.project === req.params.projectId) req.task = task;
+    if (task && task.project.equals(req.project._id)) req.task = task;
 
     next();
   } catch (err) {
