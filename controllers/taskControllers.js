@@ -53,4 +53,14 @@ const editTask = async (req, res) => {
   }
 };
 
-export default { createTask, getAllTasks, getTask, editTask };
+const deleteTask = async (req, res) => {
+  try {
+    await req.task.deleteOne();
+    res.json({ message: "Project successfully deleted" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export default { createTask, getAllTasks, getTask, editTask, deleteTask };

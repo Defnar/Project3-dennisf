@@ -17,5 +17,6 @@ router.use("/:taskId", checkTaskMidleware);
 //api/projects/:projectid/tasks/:taskid
 router.get("/:taskId", taskControllers.getTask);
 router.put("/:taskId", taskControllers.editTask);
+router.delete("/:taskId", taskControllers.deleteTask);
 
 export default router;
