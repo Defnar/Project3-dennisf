@@ -1,7 +1,7 @@
 import { signToken } from "../auth/auth.js";
 import { User } from "../models/User.js";
 
-export const logIn = async (req, res) => {
+const logIn = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -20,7 +20,7 @@ export const logIn = async (req, res) => {
   }
 };
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
   try {
     if (!req.body)
       return res.status(400).json({ message: "cannot receive empty body" });
@@ -32,3 +32,5 @@ export const register = async (req, res) => {
     return res.status(400).json({ message: err.message });
   }
 };
+
+export default { logIn, register };

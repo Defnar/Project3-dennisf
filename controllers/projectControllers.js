@@ -1,6 +1,6 @@
 import { Project } from "../models/Project.js";
 
-export const newProject = async (req, res) => {
+const newProject = async (req, res) => {
   if (!req.body)
     return res.status(400).json({ message: "Body cannot be empty" });
 
@@ -13,3 +13,22 @@ export const newProject = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+const getAllProjects = async (req, res) => {
+  if (!req.body)
+    return res.status(400).json({ message: "Body cannot be empty" });
+
+  try {
+    const projects = await Project.find({ user: req.user._id });
+
+    if (projects.length === 0)
+      return res.json({ message: "No projects found" });
+
+    res.json(projects);
+  } catch (err) {
+    res.status(500).json({ error: message.err });
+    console.log(err);
+  }
+};
+
+export default { newProject, getAllProjects };

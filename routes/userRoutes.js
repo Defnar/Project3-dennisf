@@ -1,11 +1,11 @@
 import e from "express";
-import { logIn, register } from "../controllers/userControllers.js";
+import userControllers from "../controllers/userControllers.js";
 const router = e.Router();
 
 //users/register
-router.post("/register", logIn)
+router.post("/register", userControllers.logIn)
 
 //users/login
-router.post("/login", register);
+router.post("/login", userControllers.register);
 
 export default router;
