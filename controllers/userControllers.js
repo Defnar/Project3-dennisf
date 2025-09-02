@@ -19,3 +19,16 @@ export const logIn = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+export const register = async (req, res) => {
+  try {
+    if (!req.body)
+      return res.status(400).json({ message: "cannot receive empty body" });
+
+    const user = await User.create(req.body);
+
+    res.status(201).json({ message: "Successfully created user!", user });
+  } catch (err) {
+    return res.status(400).json({ message: err.message });
+  }
+};
