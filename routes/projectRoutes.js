@@ -14,4 +14,4 @@ router.get("/", projectControllers.getAllProjects);
 //authorize users to interact with projects based on ids
 router.use("/:id", authEditMiddleware);
 
-router.get("/:id", )
+router.get("/:id", projectControllers.getProject);

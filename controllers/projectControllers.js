@@ -29,11 +29,17 @@ const getAllProjects = async (req, res) => {
 };
 
 const getProject = async (req, res) => {
-    try {
-        
-    } catch (err) {
+  try {
+    if (!req.project)
+      res
+        .status(403)
+        .json({ message: "Unauthorized to interact with project" });
 
-    }
-}
+    res.json(req.project);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
 
-export default { newProject, getAllProjects };
+export default { newProject, getAllProjects, getProject };
