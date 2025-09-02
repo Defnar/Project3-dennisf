@@ -19,3 +19,7 @@ router.use("/id", checkProjectMiddleware);
 
 router.get("/:id", projectControllers.getProject);
 router.put("/:id", projectControllers.editProject)
+router.delete("/id", projectControllers.deleteProject);
+
+
+export default router;
