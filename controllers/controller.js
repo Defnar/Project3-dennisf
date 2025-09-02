@@ -30,3 +30,13 @@ const getAll = (Model) => async (req, res) => {
     res.status(500).json({ err: err.message });
   }
 };
+
+const getOne = (Model) => async (req, res) => {
+  try {
+    if (req.task) res.json(req.task);
+    else res.json(req.project);
+  } catch (err) {
+    res.status(500).json({ error: message.err });
+    console.log(err);
+  }
+};
