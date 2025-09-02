@@ -1,6 +1,5 @@
 import e from "express";
 import { authMiddleware } from "../auth/auth.js";
-import projectControllers from "../controllers/projectControllers.js";
 import {
   projectMiddleware,
   checkProjectMiddleware,
