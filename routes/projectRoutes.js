@@ -5,6 +5,7 @@ import {
   projectMiddleware,
   checkProjectMiddleware,
 } from "../auth/middleware.js";
+import taskRoutes from "./taskRoutes.js";
 const router = e.Router();
 
 //api/projects
@@ -25,6 +26,6 @@ router.put("/:projectId", projectControllers.editProject);
 router.delete("/:projectId", projectControllers.deleteProject);
 
 //path to tasks if specified
-router.use("/:id/tasks", )
+router.use("/:id/tasks", taskRoutes)
 
 export default router;
