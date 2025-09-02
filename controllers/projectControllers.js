@@ -15,9 +15,6 @@ const newProject = async (req, res) => {
 };
 
 const getAllProjects = async (req, res) => {
-  if (!req.body)
-    return res.status(400).json({ message: "Body cannot be empty" });
-
   try {
     const projects = await Project.find({ user: req.user._id });
 
@@ -30,5 +27,13 @@ const getAllProjects = async (req, res) => {
     console.log(err);
   }
 };
+
+const getProject = async (req, res) => {
+    try {
+        
+    } catch (err) {
+
+    }
+}
 
 export default { newProject, getAllProjects };
