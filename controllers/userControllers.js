@@ -1,5 +1,5 @@
-import { signToken } from "../auth/auth";
-import { User } from "../models/User";
+import { signToken } from "../auth/auth.js";
+import { User } from "../models/User.js";
 
 export const logIn = async (req, res) => {
   try {
