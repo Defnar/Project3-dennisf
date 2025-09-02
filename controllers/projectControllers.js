@@ -30,16 +30,16 @@ const getAllProjects = async (req, res) => {
 
 const getProject = async (req, res) => {
   try {
-    if (!req.project)
-      res
-        .status(403)
-        .json({ message: "Unauthorized to interact with project" });
-
     res.json(req.project);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: err.message });
   }
 };
+
+const editProject = async (req, res) => {
+    try {
+    }
+}
 
 export default { newProject, getAllProjects, getProject };
