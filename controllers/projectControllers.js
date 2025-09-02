@@ -5,8 +5,7 @@ const newProject = async (req, res) => {
     return res.status(400).json({ message: "Body cannot be empty" });
 
   try {
-    Object.assign(req.body, { id: req.user._id });
-    const project = await Project.create(req.body);
+    const project = await Project.create(...req.body, { id: req.user._id });
 
     res.status(201).json({ message: "project successfully created", project });
   } catch (err) {
@@ -51,15 +50,20 @@ const editProject = async (req, res) => {
   }
 };
 
-const deleteProject = async ( req, res) => {
-    try {
-        await req.project.deleteOne();
-        res.json({message: "Project successfully deleted"})
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({error: err.message})
-    }
-}
+const deleteProject = async (req, res) => {
+  try {
+    await req.project.deleteOne();
+    res.json({ message: "Project successfully deleted" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
 
-export default { newProject, getAllProjects, getProject, editProject, deleteProject };
+export default {
+  newProject,
+  getAllProjects,
+  getProject,
+  editProject,
+  deleteProject,
+};
