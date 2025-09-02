@@ -26,6 +26,6 @@ router.put("/:projectId", projectControllers.editProject);
 router.delete("/:projectId", projectControllers.deleteProject);
 
 //path to tasks if specified
-router.use("/:id/tasks", taskRoutes)
+router.use("/:projectId/tasks", taskRoutes)
 
 export default router;
