@@ -2,7 +2,7 @@ import { Project } from "../models/Project.js";
 
 export const authEditMiddleware = async (req, res, next) => {
   try {
-    const project = await Project.findById(req.params.id);
+    const project = await Project.findById(req.params.projectId);
 
     if (project && project.user == req.user._id) req.project = project;
 

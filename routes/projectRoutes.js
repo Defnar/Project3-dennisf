@@ -1,7 +1,10 @@
 import e from "express";
 import { authMiddleware } from "../auth/auth.js";
 import projectControllers from "../controllers/projectControllers.js";
-import { authEditMiddleware, checkProjectMiddleware } from "../auth/middleware.js";
+import {
+  authEditMiddleware,
+  checkProjectMiddleware,
+} from "../auth/middleware.js";
 const router = e.Router();
 
 //api/projects
@@ -12,14 +15,16 @@ router.post("/", projectControllers.newProject);
 router.get("/", projectControllers.getAllProjects);
 
 //authorize users to interact with projects based on ids
-router.use("/:id", authEditMiddleware);
+router.use("/:projectId", authEditMiddleware);
 
 //ensure project is authorized
-router.use("/id", checkProjectMiddleware);
+router.use("/:projectId", checkProjectMiddleware);
 
-router.get("/:id", projectControllers.getProject);
-router.put("/:id", projectControllers.editProject)
-router.delete("/id", projectControllers.deleteProject);
+router.get("/:projectId", projectControllers.getProject);
+router.put("/:projectId", projectControllers.editProject);
+router.delete("/:projectId", projectControllers.deleteProject);
 
+//path to tasks if specified
+router.use("/:id/tasks", )
 
 export default router;
