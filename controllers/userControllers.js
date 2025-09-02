@@ -10,7 +10,7 @@ const logIn = async (req, res) => {
 
     const user = await User.findOne({ email: email });
 
-    if (!user || !user.isCorrectPassword(password))
+    if (!user || !(await user.isCorrectPassword(password)))
       return res.status(401).json({ message: "email/password mismatch" });
 
     const token = signToken(user);

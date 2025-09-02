@@ -6,12 +6,12 @@ const UserSchema = new Schema(
     username: {
       type: String,
       required: [true, "username required"],
-      min: 6,
+      minLength: 6,
     },
     password: {
       type: String,
       required: [true, "password required"],
-      min: 8,
+      minLength: 8,
     },
     email: {
       type: String,
@@ -37,7 +37,7 @@ UserSchema.pre("save", async function (next) {
 });
 
 UserSchema.methods.isCorrectPassword = async function (password) {
-  return bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
 export const User = model("User", UserSchema);

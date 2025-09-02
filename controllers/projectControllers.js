@@ -5,11 +5,12 @@ const newProject = async (req, res) => {
     return res.status(400).json({ message: "Body cannot be empty" });
 
   try {
-    const project = await Project.create(...req.body, { id: req.user._id });
+    const project = await Project.create({... req.body,  user: req.user._id });
 
     res.status(201).json({ message: "project successfully created", project });
   } catch (err) {
     res.status(500).json({ error: err.message });
+    console.log(err);
   }
 };
 

@@ -4,7 +4,7 @@ const secret = process.env.JWT_SECRET;
 const expiration = "30m";
 
 export const authMiddleware = (req, res, next) => {
-  const token = req.body?.token || req.query.token || req.headers.authorization;
+  let token = req.body?.token || req.query.token || req.headers.authorization;
 
   if (req.headers.authorization) {
     token = token.split(" ").pop().trim();
@@ -32,5 +32,5 @@ export const signToken = (user) => {
     email: user.email,
   };
 
-  return jwt.sign(payload, secret, { expiresIn: expiration });
+  return jwt.sign({data: payload}, secret, { expiresIn: expiration });
 };

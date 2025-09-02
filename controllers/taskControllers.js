@@ -4,7 +4,10 @@ const createTask = async (req, res) => {
   try {
     if (!req.body) res.status(400).json({ message: "Body cannot be empty" });
 
-    const task = await Task.create(...req.body, {
+    console.log(req.params.projectId);
+    
+    const task = await Task.create({
+      ...req.body,
       project: req.params.projectId,
     });
 

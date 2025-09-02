@@ -21,6 +21,7 @@ router.use("/:projectId", projectMiddleware);
 //ensure project is authorized
 router.use("/:projectId", checkProjectMiddleware);
 
+//api/projects/projectId
 router.get("/:projectId", projectControllers.getProject);
 router.put("/:projectId", projectControllers.editProject);
 router.delete("/:projectId", projectControllers.deleteProject);

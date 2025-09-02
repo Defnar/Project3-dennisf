@@ -11,6 +11,6 @@ app.use("/api", index);
 
 db.once("open", () => {
   app.listen(port, () =>
-    console.log(`Educational Television? OH NO @ http://localhost:${port}`)
+    console.log(`Is mayonnaise an instrument? @ http://localhost:${port}`)
   );
 });
