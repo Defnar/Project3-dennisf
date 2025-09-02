@@ -13,7 +13,9 @@ const logIn = async (req, res) => {
     if (!user || !user.isCorrectPassword(password))
       return res.status(401).json({ message: "email/password mismatch" });
 
-    signToken(user);
+    const token = signToken(user);
+
+    res.json({ token, user });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: err.message });
