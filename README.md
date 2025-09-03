@@ -43,7 +43,7 @@ This project is intended to display proficiency in
   - A delete request will delete the task from the database, if the user has access.
 
 # Approach
-- I approached this project building with this logical order: models => authentication and authorization => route logic => routes => optimizations, while planning from the top down, considering where data needs to flow, and how everything needs to be organized.  I prefer building from the ground up, knowing what data I need, and then what I need to authenticate/authorize and where, and finally setting everything to routes.
+- I approached this project building in this order: models => authentication and authorization => route logic => routes => optimizations, while planning from the top down, considering where data needs to flow, and how everything needs to be organized.  I prefer building from the ground up, knowing what data I need, and then what I need to authenticate/authorize and where, and finally setting everything to routes.
 - I prefer to optimize as I see things I can optimize, but I overall look to optimize after I have all general logic around a function, and logic flow, down.  The combination of the CRUD operations came after I had everything written out, for both project and task routes, for example.
   
 # Improvements I could make
