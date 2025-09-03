@@ -12,13 +12,15 @@ This project is intended to display proficiency in
   - logical file organization and setup, keeping separation of concerns
 
 # How to use this app
-- Ensure you have a mongoDB set up
-    - In your env file, you will need:
-      ```
-      MONGO_URI=<your mongo connection here>
-      JWT_SECRET=<your secret key here>
-      PORT=<port of your choosing>
-      ```
+- Ensure you have a mongoDB set up, with a database to which you can connect
+  - If you are unsure of how to set up and get a connection go mongoDb, reference this: https://www.mongodb.com/resources/products/fundamentals/create-database
+  - Make sure you select the node.js connection method, grabbing the url provided with both your database username and password.  If you missed your password, but have mongo compass downloaded, you can click the 3 dots on your database and grab the connection string there, otherwise you will need make a new password.
+- In your env file, you will need:
+  ```
+  MONGO_URI=<your mongo connection here>
+  JWT_SECRET=<your secret key here>
+  PORT=<port of your choosing>
+  ```
 - after your file is properly configured, you can visit `http://localhost:<yourport>/api/users/register` with a username, email, and password of your choosing, in the format: `{username: <your username>, email: <your email>, password: <your password>`.  After you've registered, you can login and receive a token via `.../api/users/login`, upon which entering your email and password `{email: <your email>, password: <your password>`, you will receive a jwebtoken.
 - ## creating a project
   - By sending a post request to `.../api/projects`, with a body containing a name and description in a json body as such: `{name: name, description: description}`, a new project will be added to the database based on this object.
