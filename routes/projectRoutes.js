@@ -1,6 +1,6 @@
 import e from "express";
 import { authMiddleware } from "../auth/auth.js";
-import { authMiddleware, checkMiddlewareAuth } from "../auth/middleware.js";
+import { authPostMiddleware, checkMiddlewareAuth } from "../auth/middleware.js";
 import controller from "../controllers/controller.js";
 import taskRoutes from "./taskRoutes.js";
 import { Project } from "../models/Project.js";
@@ -14,7 +14,7 @@ router.post("/", controller.create(Project, "user"));
 router.get("/", controller.getAll(Project, "user"));
 
 //authorize users to interact with projects based on ids
-router.use("/:projectId", authMiddleware(Project, "user"));
+router.use("/:projectId", authPostMiddleware(Project, "user"));
 
 //ensure project is authorized
 router.use("/:projectId", checkMiddlewareAuth(Project));
