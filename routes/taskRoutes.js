@@ -10,7 +10,7 @@ router.post("/", controller.create(Task));
 router.get("/", controller.getAll(Task));
 
 //check for authorization
-router.use("/:taskId", middleware(Task));
+router.use("/:taskId", middleware(Task, "project"));
 
 //ensure authorization
 router.use("/:taskId", checkMiddlewareAuth(Task));

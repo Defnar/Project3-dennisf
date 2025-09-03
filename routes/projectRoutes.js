@@ -14,7 +14,7 @@ router.post("/", controller.create(Project));
 router.get("/", controller.getAll(Project));
 
 //authorize users to interact with projects based on ids
-router.use("/:projectId", middleware(Project));
+router.use("/:projectId", middleware(Project, "user"));
 
 //ensure project is authorized
 router.use("/:projectId", checkMiddlewareAuth(Project));
