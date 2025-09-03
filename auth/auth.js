@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 const secret = process.env.JWT_SECRET;
 const expiration = "30m";
 
-export const authPostMiddleware = (req, res, next) => {
+export const authMiddleware = (req, res, next) => {
   let token = req.body?.token || req.query.token || req.headers.authorization;
 
   if (req.headers.authorization) {
