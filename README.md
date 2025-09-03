@@ -31,7 +31,7 @@ This project is intended to display proficiency in
   - Sending a delete request will delete the project from the database
 
 - ## Creating a task
-  - These work similar to project, with the caveat being a longer url, and tasks are related to the project they are created under.  By running a post request to `.../api/projects/<project id>/tasks`, you can create a new task under the project you're currently working with.  The structure for task is `{title: title, description: description, status: status]` where status can be one of three: "To Do", "In Progress", "Done".
+  - These work similar to project, with the caveat being a longer url, and tasks are related to the project they are created under.  By running a post request to `.../api/projects/<project id>/tasks`, you can create a new task under the project you're currently working with.  The structure for task is `{title: title, description: description, status: status]` where status can be one of three: "To Do", "In Progress", "Done", defaulting to "To Do" if status is left out of the json body.
 - ## Getting all tasks
   - Send a get request to `.../api/projects/<project id>/tasks` to retrieve all tasks tied to your project
 - ## get one, edit, delete tasks
