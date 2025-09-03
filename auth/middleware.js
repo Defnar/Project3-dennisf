@@ -1,4 +1,4 @@
-export const middleware = (Model, parentKey) => async (req, res, next) => {
+export const authMiddleware = (Model, parentKey) => async (req, res, next) => {
   try {
     //grab last parameter out of params
     const idParam = Object.keys(req.params).pop();

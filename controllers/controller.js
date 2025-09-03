@@ -20,10 +20,9 @@ const create = (Model, parentKey) => async (req, res) => {
 
 const getAll = (Model, parentKey) => async (req, res) => {
   try {
-  
     const search = {
-      [parentKey]: req[parentKey]._id
-    }
+      [parentKey]: req[parentKey]._id,
+    };
 
     const models = await Model.find(search);
 
