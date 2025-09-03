@@ -10,8 +10,8 @@ const router = e.Router();
 //authenticate everything here
 router.use(authMiddleware);
 
-router.post("/", controller.create(Project));
-router.get("/", controller.getAll(Project));
+router.post("/", controller.create(Project, "user"));
+router.get("/", controller.getAll(Project, "user"));
 
 //authorize users to interact with projects based on ids
 router.use("/:projectId", middleware(Project, "user"));

@@ -6,8 +6,8 @@ const router = e.Router();
 
 //api/projects/:id/tasks/:taskid
 
-router.post("/", controller.create(Task));
-router.get("/", controller.getAll(Task));
+router.post("/", controller.create(Task, "project"));
+router.get("/", controller.getAll(Task, "project"));
 
 //check for authorization
 router.use("/:taskId", middleware(Task, "project"));

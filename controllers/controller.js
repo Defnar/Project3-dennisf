@@ -1,12 +1,11 @@
-const create = (Model) => async (req, res) => {
+const create = (Model, parentKey) => async (req, res) => {
   try {
     if (!req.body)
       return res.status(400).json({ message: "Body cannot be empty" });
 
     const newModel = { ...req.body };
 
-    if (req.project) newModel.project = req.project._id;
-    else newModel.user = req.user._id;
+    newModel[parentKey] = req[parentKey]._id;
 
     const model = await Model.create(newModel);
 
@@ -19,14 +18,14 @@ const create = (Model) => async (req, res) => {
   }
 };
 
-const getAll = (Model) => async (req, res) => {
+const getAll = (Model, parentKey) => async (req, res) => {
   try {
+  
     const search = {
-      project: { user: req.user?._id },
-      task: { project: req.project?._id },
-    };
+      [parentKey]: req[parentKey]._id
+    }
 
-    const models = await Model.find(search[Model.modelName.toLowerCase()]);
+    const models = await Model.find(search);
 
     if (models.length === 0)
       return res.status(404).json({ message: "No resources found" });
