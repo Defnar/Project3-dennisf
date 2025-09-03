@@ -52,7 +52,7 @@ const edit = (Model) => async (req, res) => {
     if (!req.body)
       return res.status(400).json({ message: "Body cannot be empty" });
 
-    const model = Object.assign(req.task || req.project, req.body);
+    const model = Object.assign(req[Model.modelName.toLowerCase()], req.body);
 
     await model.save();
     res.json({ message: `${Model.modelName} successfully updated`, model });
