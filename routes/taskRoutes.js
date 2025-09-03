@@ -1,5 +1,5 @@
 import e from "express";
-import { checkTaskMidleware, taskMiddleware } from "../auth/middleware.js";
+import { middleware, checkMiddlewareAuth } from "../auth/middleware.js";
 import controller from "../controllers/controller.js";
 import { Task } from "../models/Task.js";
 const router = e.Router();
@@ -10,10 +10,10 @@ router.post("/", controller.create(Task));
 router.get("/", controller.getAll(Task));
 
 //check for authorization
-router.use("/:taskId", taskMiddleware);
+router.use("/:taskId", middleware(Task));
 
 //ensure authorization
-router.use("/:taskId", checkTaskMidleware);
+router.use("/:taskId", checkMiddlewareAuth(Task));
 
 //api/projects/:projectid/tasks/:taskid
 router.get("/:taskId", controller.getOne(Task));

@@ -1,12 +1,19 @@
-import { Project } from "../models/Project.js";
-import { Task } from "../models/Task.js";
-
-//project middlewares
-export const projectMiddleware = async (req, res, next) => {
+export const middleware = (Model) => async (req, res, next) => {
   try {
-    const project = await Project.findById(req.params.projectId);
+    //grab last parameter out of params
+    const idParam = Object.keys(req.params).pop();
 
-    if (project && project.user.equals(req.user._id)) req.project = project;
+    const model = await Model.findById(req.params[idParam]);
+
+    const parentKeys = {
+      Project: "user",
+      Task: "project",
+    };
+
+    const key = parentKeys[Model.modelName];
+
+    if (model && model[key].equals(req[key]._id))
+      req[Model.modelName.toLowerCase()] = model;
 
     next();
   } catch (err) {
@@ -15,33 +22,10 @@ export const projectMiddleware = async (req, res, next) => {
   }
 };
 
-export const checkProjectMiddleware = (req, res, next) => {
-  if (!req.project)
-    return res
-      .status(403)
-      .json({ message: "Unauthorized to interact with project" });
-  next();
-};
-
-//task middlewares
-
-export const taskMiddleware = async (req, res, next) => {
-  try {
-    const task = await Task.findById(req.params.taskId);
-
-    if (task && task.project.equals(req.project._id)) req.task = task;
-
-    next();
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: err.message });
-  }
-};
-
-export const checkTaskMidleware = (req, res, next) => {
-  if (!req.task)
-    return res
-      .status(403)
-      .json({ message: "Unauthorized to interact with task" });
+export const checkMiddlewareAuth = (Model) => (req, res, next) => {
+  if (!req[Model.modelName.toLowerCase()])
+    return res.status(403).json({
+      message: `Unauthorized to interact with ${Model.modelName.toLowerCase()}`,
+    });
   next();
 };
