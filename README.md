@@ -21,7 +21,8 @@ This project is intended to display proficiency in
   JWT_SECRET=<your secret key here>
   PORT=<port of your choosing>
   ```
-- after your file is properly configured, you can visit `http://localhost:<yourport>/api/users/register` with a username, email, and password of your choosing, in the format: `{username: <your username>, email: <your email>, password: <your password>`.  After you've registered, you can login and receive a token via `.../api/users/login`, upon which entering your email and password `{email: <your email>, password: <your password>`, you will receive a jwebtoken.
+- run npm install in the root directory of the app to grab all dependencies
+- after your file is properly configured, you can run node server.js and visit `http://localhost:<yourport>/api/users/register` with a username, email, and password of your choosing, in the format: `{username: <your username>, email: <your email>, password: <your password>`.  After you've registered, you can login and receive a token via `.../api/users/login`, upon which entering your email and password `{email: <your email>, password: <your password>`, you will receive a jwebtoken.
 - ## creating a project
   - By sending a post request to `.../api/projects`, with a body containing a name and description in a json body as such: `{name: name, description: description}`, a new project will be added to the database based on this object.
 - ## Getting all projects
